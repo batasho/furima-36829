@@ -1,24 +1,32 @@
-# README
+# users　テーブル
+| Colum              | Type       | Options                        |
+|--------------------|------------|--------------------------------|
+| nickname           | string     | null: false                    |
+| encrypted_password | string     | null: false                    |
+| email              | string     | null: false, unique: true      |
+| first_name         | text       | null: false                    |
+| last_name          | text       | null: false                    |
+| birthday           | text       | null: false                    |
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# stocks テーブル
+| Colum              | Type       | Option                         |
+|------------------- |------------|------------------------------  |
+| image              | text       | null: false                    |
+| name               | text       | null: false                    |
+| explaration        | text       | null: false                    |
+| price              | integer    | null: false                    |
+| user               | references | null: false, foreign_key: true |
+| buyer              | references | null: false, foreign_key: true |
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# buyers テーブル
+| Colum              | Type       | Option                         |
+|------------------  |------------|--------------------------------|
+| account            | integer    | null: false                    |
+| expiry             | integer    | null: false                    |
+| security           | integer    | null: false                    |
+| postal             | text       | null: false                    |
+| prefectures        | integer    | null: false                    |
+| municipality       | text       | null: false                    |
+| address            | text       | null: false                    |
+| building           | text       | null: false                    |
+| phone              | integer    | null: false                    |

@@ -14,6 +14,11 @@
 | image              | text       | null: false                    |
 | name               | text       | null: false                    |
 | explaration        | text       | null: false                    |
+| category           | integer    | null: false                    |
+| status             | integer    | null: false                    |
+| charge             | integer    | null: false                    |
+| area               | integer    | null: false                    |
+| days               | integer    | null: false                    |
 | price              | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
 | buyer              | references | null: false, foreign_key: true |

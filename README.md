@@ -30,33 +30,33 @@ has_many :purchases
 
 ### Association
 belongs_to :user
-belongs_to :buyer
 belongs_to :purchase
 has_one :purchase
+
 
 ## buyers テーブル （購入者情報）
 | Colum              | Type       | Option                         |
 |------------------  |------------|--------------------------------|
 | postal             | string     | null: false                    |
 | area_id            | integer    | null: false                    |
-| municipality       | integer    | null: false                    |
-| address            | integer    | null: false                    |
-| building           | integer    |                                |
+| municipality       | string     | null: false                    |
+| address            | string     | null: false                    |
+| building           | string     |                                |
 | phone              | string     | null: false                    |
 | purchase           | references | null: false, foreign_key: true |
 
 ### Association
-has_many :stocks
 belongs_to :purchase
+
 
 ## purchases テーブル　（購入履歴）
 | Colum              |Type        | Option                         |
 |--------------------|------------|--------------------------------|
 | user               | references | null: false, foreign_ley: true |
-| buyer              | references | null: false                    |
 | stock              | references | null: false, foreign_key: true |
 
 ### Association
 belongs_to :stock
 has_one :buyer
 belongs_to :user
+

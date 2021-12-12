@@ -14,7 +14,7 @@
 has_many :stocks
 has_many :purchases
 
-## stocks テーブル（出品情報）
+## stocks(items) テーブル（出品情報）
 | Colum              | Type       | Option                         |
 |------------------- |------------|------------------------------  |
 | name               | string     | null: false                    |

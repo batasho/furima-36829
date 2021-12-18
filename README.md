@@ -11,10 +11,10 @@
 | birthday           | date       | null: false                    |
 
 ### Association
-has_many :stocks
+has_many :items
 has_many :purchases
 
-## stocks(items) テーブル（出品情報）
+## items テーブル（出品情報）
 | Colum              | Type       | Option                         |
 |------------------- |------------|------------------------------  |
 | name               | string     | null: false                    |
@@ -51,10 +51,10 @@ belongs_to :purchase
 | Colum              |Type        | Option                         |
 |--------------------|------------|--------------------------------|
 | user               | references | null: false, foreign_key: true |
-| stock              | references | null: false, foreign_key: true |
+| item               | references | null: false, foreign_key: true |
 
 ### Association
-belongs_to :stock
+belongs_to :item
 has_one :buyer
 belongs_to :user
 

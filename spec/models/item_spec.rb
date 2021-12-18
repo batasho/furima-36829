@@ -27,28 +27,28 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include "Explaration can't be blank"
       end
-      it 'カテゴリーが空では登録できない'do
-        @item.category_id = ''
+      it 'カテゴリーで「---」が選択されている場合は登録できない'do
+        @item.category_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include "Category can't be blank"
       end
-      it '商品の状態が空では登録できない'do
-        @item.status_id = ''
+      it '商品の状態で「---」が選択されている場合は登録できない'do
+        @item.status_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include "Status can't be blank"
       end
-      it '配送料の負担が空では登録できない'do
-        @item.charge_id = ''
+      it '配送料の負担で「---」が選択されている場合は登録できない'do
+        @item.charge_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include "Charge can't be blank"
       end
-      it '発送元の地域が空では登録できない'do
-        @item.area_id = ''
+      it '発送元の地域で「---」が選択されている場合は登録できない'do
+        @item.area_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include "Area can't be blank"
       end
-      it '発送までの日数が空では登録できない'do
-        @item.shipping_day_id = ''
+      it '発送までの日数で「---」が選択されている場合は登録できない'do
+        @item.shipping_day_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include "Shipping day can't be blank"
       end
@@ -66,6 +66,16 @@ RSpec.describe Item, type: :model do
         @item.price = '10000000'
         @item.valid?
         expect(@item.errors.full_messages).to include "Price is out of setting range"
+      end
+      it '価格が範囲外だと登録できない'do
+        @item.price = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Price is out of setting range"
+      end
+      it 'userが紐付いていないと保存できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
   end

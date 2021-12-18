@@ -2,8 +2,7 @@ class ItemsController < ApplicationController
   before_action :move_to, except: [:index ]
 
   def index
-    @items = Item.all
-    #@items = Item.other("created_at DESC")
+    #@items = Item.all
   end
 
   def new

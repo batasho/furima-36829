@@ -17,5 +17,5 @@ class Item < ApplicationRecord
   validates :name,            presence: true
   validates :explaration,     presence: true
   validates :price, presence: true, numericality: {only_integer: true,  message: " is invalid. Input half-width characters"}
-  validates :price, presence: true, numericality: {greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 , message: "is out of setting range"}
+  validates :price, numericality: {greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 , message: "is out of setting range"}
 end

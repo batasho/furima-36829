@@ -8,7 +8,8 @@ class BuyerPurchase
     validates :address
     validates :phone, format: {with: /\A[0-9]+\z/, message: "input only number"}
   end
-  validates :area_id, numericality: {other_than: 0, message: "can't be blank"}, presence: true
+  validates :area_id, numericality: {other_than: 0, message: "can't be blank"}
+  validates :area_id, presence: true
   validates :token, presence: true
 
   def save

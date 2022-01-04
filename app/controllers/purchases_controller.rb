@@ -1,8 +1,11 @@
 class PurchasesController < ApplicationController
+  #before_action :authenticate_user! #except: [:index, :show ]
+  #before_action :trans_top, only: [:index, :create ]
 
   def index
     @buyer_purchase = BuyerPurchase.new
     @item = Item.find(params[:item_id])
+    @purchase = Purchase.all
   end
 
   def create
@@ -31,4 +34,9 @@ class PurchasesController < ApplicationController
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
   end
+
+  # def trans_top
+  #   redirect_to root_path unless current_user.id == @item.user_id
+  # end
+
 end

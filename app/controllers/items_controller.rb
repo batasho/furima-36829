@@ -57,7 +57,9 @@ class ItemsController < ApplicationController
   end
 
   def trans_top
-    redirect_to root_path unless current_user.id == @item.user_id
+    if @item.purchase.present?
+    redirect_to root_path
+    end
   end
 
 end

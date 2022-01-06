@@ -1,6 +1,7 @@
 class PurchasesController < ApplicationController
-  #before_action :authenticate_user! #except: [:index, :show ]
-  #before_action :trans_top, only: [:index, :create ]
+  before_action :move_to_index
+  before_action :buyer_top
+  before_action :trans_top
 
   def index
     @buyer_purchase = BuyerPurchase.new
@@ -35,8 +36,24 @@ class PurchasesController < ApplicationController
     )
   end
 
-  # def trans_top
-  #   redirect_to root_path unless current_user.id == @item.user_id
-  # end
+  def trans_top #購入済の商品を購入しようとするとトップページに遷移
+    @item = Item.find(params[:item_id])
+    if @item.purchase.present?
+      redirect_to root_path
+    end
+  end
+
+  def buyer_top #自分が出品した商品の購入ページに遷移するとトップページに遷移
+    @item = Item.find(params[:item_id])
+    if current_user.id == @item.user_id
+      redirect_to root_path
+    end
+  end
+
+  def move_to_index #ログアウト時に購入ページに遷移しようとするとトップページに遷移
+    unless user_signed_in?
+      redirect_to root_path
+    end
+  end
 
 end

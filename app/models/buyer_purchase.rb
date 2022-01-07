@@ -6,12 +6,13 @@ class BuyerPurchase
     validates :postal, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
     validates :municipality
     validates :address
+    validates :token
+    validates :user_id
+    validates :item_id
     validates :phone, format: {with: /\A\d{10,11}\z/, message: "input only number"}
   end
+  
   validates :area_id, numericality: {other_than: 0, message: "can't be blank"}
-  validates :token, presence: true
-  validates :user_id, presence: true
-  validates :item_id, presence: true
 
   def save
     #購入履歴を保存する

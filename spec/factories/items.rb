@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :item do
-    name               {Faker::String.random}
-    explaration        {Faker::String.random}
+    name               {"スマートフォン"}
+    explaration        {"中古品です"}
     category_id        {2}
     status_id          {3}
     charge_id          {2}

@@ -70,10 +70,12 @@ RSpec.describe BuyerPurchase, type: :model do
       it'userが紐づいていないと保存できないこと' do
         @buyer_purchase.user_id = nil
         @buyer_purchase.valid?
+        expect(@buyer_purchase.errors.full_messages).to include("User can't be blank")
       end
       it'itemが紐づいていないと保存できないこと' do
         @buyer_purchase.item_id = nil
         @buyer_purchase.valid?
+        expect(@buyer_purchase.errors.full_messages).to include("Item can't be blank")
       end
     end
   end

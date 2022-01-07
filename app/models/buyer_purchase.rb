@@ -9,7 +9,6 @@ class BuyerPurchase
     validates :phone, format: {with: /\A\d{10,11}\z/, message: "input only number"}
   end
   validates :area_id, numericality: {other_than: 0, message: "can't be blank"}
-  validates :area_id, presence: true
   validates :token, presence: true
   validates :user_id, presence: true
   validates :item_id, presence: true

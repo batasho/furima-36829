@@ -11,6 +11,8 @@ class BuyerPurchase
   validates :area_id, numericality: {other_than: 0, message: "can't be blank"}
   validates :area_id, presence: true
   validates :token, presence: true
+  validates :user_id, presence: true
+  validates :item_id, presence: true
 
   def save
     #購入履歴を保存する

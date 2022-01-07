@@ -1,11 +1,11 @@
 class PurchasesController < ApplicationController
+  before_action :set_item
   before_action :move_to_index
   before_action :buyer_top
   before_action :trans_top
 
   def index
     @buyer_purchase = BuyerPurchase.new
-    @purchase = Purchase.all
   end
 
   def create
@@ -21,6 +21,10 @@ class PurchasesController < ApplicationController
 
   private
 
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
   def purchase_params
     params.require(:buyer_purchase).permit(:postal, :area_id, :municipality, :address, :building, :phone ).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
   end
@@ -35,14 +39,12 @@ class PurchasesController < ApplicationController
   end
 
   def trans_top #購入済の商品を購入しようとするとトップページに遷移
-    @item = Item.find(params[:item_id])
     if @item.purchase.present?
       redirect_to root_path
     end
   end
 
   def buyer_top #自分が出品した商品の購入ページに遷移するとトップページに遷移
-    @item = Item.find(params[:item_id])
     if current_user.id == @item.user_id
       redirect_to root_path
     end

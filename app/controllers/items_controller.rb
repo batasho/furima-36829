@@ -56,8 +56,8 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def trans_top
-    if @item.purchase.present?
+  def trans_top #商品が購入済　or　商品の出品者でない場合はトップページに遷移する
+    if @item.purchase.present? || !(current_user.id == @item.user_id)
     redirect_to root_path
     end
   end

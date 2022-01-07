@@ -52,10 +52,28 @@ RSpec.describe BuyerPurchase, type: :model do
         @buyer_purchase.valid?
         expect(@buyer_purchase.errors.full_messages).to include("Phone input only number")
       end
+      it'phoneが9桁以下では保存ができないこと'do
+        @buyer_purchase.phone = '080456789'
+        @buyer_purchase.valid?
+        expect(@buyer_purchase.errors.full_messages).to include("Phone input only number")
+      end
+      it'phoneが12桁以上では保存ができないこと'do
+        @buyer_purchase.phone = '080456789012'
+        @buyer_purchase.valid?
+        expect(@buyer_purchase.errors.full_messages).to include("Phone input only number")
+      end
       it'tokenが空では保存できない' do
         @buyer_purchase.token = nil
         @buyer_purchase.valid?
         expect(@buyer_purchase.errors.full_messages).to include("Token can't be blank")
+      end
+      it'userが紐づいていないと保存できないこと' do
+        @buyer_purchase.user_id = nil
+        @buyer_purchase.valid?
+      end
+      it'itemが紐づいていないと保存できないこと' do
+        @buyer_purchase.item_id = nil
+        @buyer_purchase.valid?
       end
     end
   end

@@ -5,12 +5,10 @@ class PurchasesController < ApplicationController
 
   def index
     @buyer_purchase = BuyerPurchase.new
-    @item = Item.find(params[:item_id])
     @purchase = Purchase.all
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @buyer_purchase = BuyerPurchase.new(purchase_params)
     if @buyer_purchase.valid?
       pay_item
@@ -24,7 +22,7 @@ class PurchasesController < ApplicationController
   private
 
   def purchase_params
-    params.require(:buyer_purchase).permit(:postal, :area_id, :municipality, :address, :building, :phone, :purchase_id ).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
+    params.require(:buyer_purchase).permit(:postal, :area_id, :municipality, :address, :building, :phone ).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
   end
 
   def pay_item
@@ -50,9 +48,9 @@ class PurchasesController < ApplicationController
     end
   end
 
-  def move_to_index #ログアウト時に購入ページに遷移しようとするとトップページに遷移
+  def move_to_index #ログアウト時に購入ページに遷移しようとするとログインページに遷移
     unless user_signed_in?
-      redirect_to root_path
+      redirect_to "http://localhost:3000/users/sign_in"
     end
   end
 

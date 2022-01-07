@@ -1,12 +1,12 @@
 class BuyerPurchase
   include ActiveModel::Model
-  attr_accessor :postal, :area_id, :municipality , :address, :building, :phone, :user_id, :item_id, :purchase, :token
+  attr_accessor :postal, :area_id, :municipality , :address, :building, :phone, :user_id, :item_id, :token
 
   with_options presence: true do
     validates :postal, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
     validates :municipality
     validates :address
-    validates :phone, format: {with: /\A[0-9]+\z/, message: "input only number"}
+    validates :phone, format: {with: /\A\d{10,11}\z/, message: "input only number"}
   end
   validates :area_id, numericality: {other_than: 0, message: "can't be blank"}
   validates :area_id, presence: true
